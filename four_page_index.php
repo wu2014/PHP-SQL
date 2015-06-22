@@ -1,33 +1,18 @@
 <?php
-    session_start();
-
-    // If the session vars aren't set, try to set them with a cookie
-    if (!isset($_SESSION['customerNumber'])) {
-        if (isset($_COOKIE['customerNumber']) && isset($_COOKIE['username'])) {
-            $_SESSION['customerNumber'] = $_COOKIE['customerNumber'];
-            $_SESSION['username'] = $_COOKIE['username'];
-        }
-    }
+    // Start the session and various includes 
+    require_once('./includes/startsession.inc.php');
+    // insert page header and navigation links
+    $page_title = 'Home Page';
+    require_once('./includes/headerRSS.inc.php'); 
+    require_once('./includes/navmenu.inc.php');
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Lesson 5</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <h3>Lesson 5</h3>
-
+    <div id="content">
+       <p>This site is intended for people who are intrested in classic car search</p> 
+       <img src="./images/car.gif" alt="Car Icon">   
+    </div>
 <?php 
-    // Generate the navigation menu
-    if (isset($_SESSION['username'])) {
-        echo '<a href="logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
-    } else {
-        echo '<a href="login.php">Log In</a><br>';
-        echo '<a href="signup.php">Sign Up</a>';
-    }
+require_once('./includes/footer.inc.php');
 ?>
-</body> 
-</html>
+
+
