@@ -1,32 +1,21 @@
 <?php
-    session_start();
-
-    // If the session vars aren't set, try to set them with a cookie
-    if (!isset($_SESSION['customerNumber'])) {
-        if (isset($_COOKIE['customerNumber']) && isset($_COOKIE['username'])) {
-            $_SESSION['customerNumber'] = $_COOKIE['customerNumber'];
-            $_SESSION['username'] = $_COOKIE['username'];
-        }
-    }
+    // start the session
+    require_once('./includes/startsession.inc.php');
+    // insert header and navigation links
+    $page_title = 'Welcome to the Classic Car site';
+    require_once('./includes/htmlhead.inc.php');
+    require_once('./includes/navmenu.inc.php'); 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Lesson 5</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <h3>Lesson 5</h3>
-
+    <div id="content">            
 <?php
-
     // if log in, welcome the user
     if (isset($_SESSION['username'])) {
-        echo 'Welcome'.' ' .$_SESSION['username'].'<br>';
-        echo '<a href="logout.php">Log Out (' . $_SESSION['username'] . ')</a>';
-    }
+        echo '<p>Welcome'.' ' .$_SESSION['username'].'</P>';
+        echo "<p>Feel free to search the classic cars. If you have any question, please contact our company.</p>";
+    }  
 ?>
-</body> 
-</html>
+    </div>
+<?php 
+require_once('./includes/footer.inc.php'); 
+?>
